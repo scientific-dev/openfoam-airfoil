@@ -21,7 +21,7 @@ internalField   uniform $kInlet;
 
 boundaryField
 {
-    inlet
+    freestream
     {
         type            inletOutlet;
         inletValue      uniform $kInlet;
@@ -32,20 +32,6 @@ boundaryField
     {
         type            kqRWallFunction;
         value           uniform $kInlet;
-    }
-
-    outlet
-    {
-        type            zeroGradient;
-    }
-
-    back
-    {
-        type            empty;
-    }
-    front
-    {
-        type            empty;
     }
 
     #includeEtc "caseDicts/setConstraintTypes"

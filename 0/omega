@@ -21,7 +21,7 @@ internalField   uniform $omegaInlet;
 
 boundaryField
 {
-    inlet
+    freestream
     {
         type            inletOutlet;
         inletValue      uniform $omegaInlet;
@@ -32,20 +32,6 @@ boundaryField
     {
         type            omegaWallFunction;
         value           uniform $omegaInlet;
-    }
-
-    outlet
-    {
-        type            zeroGradient;
-    }
-
-    back
-    {
-        type            empty;
-    }
-    front
-    {
-        type            empty;
     }
 
     #includeEtc "caseDicts/setConstraintTypes"

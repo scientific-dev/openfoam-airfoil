@@ -31,7 +31,7 @@ boundaryField
         value           uniform $pOut;
     }
 
-    inlet
+    freestream
     {
         type            freestreamPressure;
         freestreamValue uniform $pOut;
@@ -40,15 +40,6 @@ boundaryField
     airfoil
     {
         type            zeroGradient;
-    }
-
-    back
-    {
-        type            empty;
-    }
-    front
-    {
-        type            empty;
     }
 
     #includeEtc "caseDicts/setConstraintTypes"

@@ -21,7 +21,7 @@ internalField   uniform $Tinlet;
 
 boundaryField
 {
-    inlet
+    freestream
     {
         type            inletOutlet;
         inletValue      uniform $Tinlet;
@@ -31,20 +31,6 @@ boundaryField
     airfoil
     {
         type            zeroGradient;
-    }
-
-    outlet
-    {
-        type            zeroGradient;
-    }
-
-    back
-    {
-        type            empty;
-    }
-    front
-    {
-        type            empty;
     }
 
     #includeEtc "caseDicts/setConstraintTypes"
