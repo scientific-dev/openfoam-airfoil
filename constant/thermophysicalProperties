@@ -7,44 +7,40 @@
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
-    version     2.0;
     format      ascii;
-    class       volScalarField;
-    location    "0";
-    object      Ma;
+    class       dictionary;
+    location    "constant";
+    object      thermophysicalProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 0 0 0 0 0 0];
-
-internalField   uniform 0.13237;
-
-boundaryField
+thermoType
 {
-    airfoil
-    {
-        type            calculated;
-        value           uniform 0;
-    }
-    inlet
-    {
-        type            calculated;
-        value           uniform 0.13237;
-    }
-    outlet
-    {
-        type            calculated;
-        value           uniform 0.13237;
-    }
-    back
-    {
-        type            empty;
-    }
-    front
-    {
-        type            empty;
-    }
+    type            hePsiThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          hConst;
+    equationOfState perfectGas;
+    specie          specie;
+    energy          sensibleInternalEnergy;
 }
 
+mixture 
+{
+    specie
+    {
+        molWeight   28.97;
+    }
+    thermodynamics
+    {
+        Cp          1005;
+        Hf          0;
+    }
+    transport
+    {
+        mu          1.81e-5;
+        Pr          0.6958;
+    }
+}
 
 // ************************************************************************* //

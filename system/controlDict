@@ -21,13 +21,13 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         0.15;
+endTime         2000;
 
-deltaT          2e-5;
+deltaT          1;
 
 writeControl    adjustableRunTime;
 
-writeInterval   0.001;
+writeInterval   50;
 
 purgeWrite      0;
 
@@ -43,4 +43,48 @@ timePrecision   6;
 
 runTimeModifiable true;
 
-// ************************************************************************* //
+functions {
+      forceCoeffs
+    {
+        type                forceCoeffs;
+        libs                ("libforces.so");
+        writeControl        timeStep;
+        writeInterval       50;
+
+        log         true;
+        patches     (airfoil);
+        rho         rhoInf;      
+        CofR        (0.25 0 0);  
+        pName       p;
+        UName       U;  
+        // !!ref
+		liftDir (0 1 0);
+		dragDir (1 0 0);
+		rhoInf 1.225;
+		magUInf 45.804;
+		// !!ref
+        pitchAxis   (0 0 1);
+        lRef        1;
+        Aref        1;       
+    }
+
+    residuals
+    {
+        type            residuals;
+        libs            ("libutilityFunctionObjects.so");
+        writeControl    timeStep;
+        writeInterval   50;       
+        fields          (p U nut nuTilda);  
+    }
+
+    yPlus
+    {
+        type            yPlus;
+        libs            ("libfieldFunctionObjects.so");
+        executeControl  timeStep;
+        executeInterval 50;
+        writeControl    timeStep;
+        writeInterval   50;
+        log             yes;
+    }
+}

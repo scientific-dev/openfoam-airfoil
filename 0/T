@@ -2,38 +2,45 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  13
+    \\  /    A nd           | Version:  dev
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
+    version     2.0;
     format      ascii;
     class       volScalarField;
     object      T;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-Tinlet          298;
-
 dimensions      [0 0 0 1 0 0 0];
 
-internalField   uniform $Tinlet;
+internalField   uniform 298;
 
 boundaryField
 {
     freestream
     {
         type            inletOutlet;
-        inletValue      uniform $Tinlet;
-        value           $inletValue;
+        inletValue      $internalField;
+        value           $internalField;
     }
 
     airfoil
     {
         type            zeroGradient;
     }
+    
+    front
+    {
+        type            empty;
+    }
 
-    #includeEtc "caseDicts/setConstraintTypes"
+    back
+    {
+        type            empty;
+    }
 }
 
 // ************************************************************************* //

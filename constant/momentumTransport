@@ -2,11 +2,12 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  13
+    \\  /    A nd           | Version:  dev
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
+    version     2.0;
     format      ascii;
     class       dictionary;
     object      momentumTransport;
@@ -19,6 +20,7 @@ RAS
 {
     model               kOmegaSST;
     turbulence          on;
+    printCoeffs         on;
 }
 
 // ************************************************************************* //

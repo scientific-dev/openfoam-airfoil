@@ -13,36 +13,33 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-pOut            1e5;
 
 dimensions      [1 -1 -2 0 0 0 0];
 
-internalField   uniform $pOut;
+internalField   uniform 1e5;
 
 boundaryField
 {
-    outlet
-    {
-        type            waveTransmissive;
-        field           p;
-        gamma           1.4;
-        fieldInf        $pOut;
-        lInf            5;
-        value           uniform $pOut;
-    }
-
     freestream
     {
         type            freestreamPressure;
-        freestreamValue uniform $pOut;
+        freestreamValue $internalField;
     }
 
     airfoil
     {
         type            zeroGradient;
     }
+    
+    front
+    {
+        type            empty;
+    }
 
-    #includeEtc "caseDicts/setConstraintTypes"
+    back
+    {
+        type            empty;
+    }
 } 
 
 // ************************************************************************* //

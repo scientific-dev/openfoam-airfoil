@@ -8,41 +8,23 @@
 FoamFile
 {
     format      ascii;
-    class       volScalarField;
-    object      k;
+    class       dictionary;
+    location    "0/uniform";
+    object      time;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-kInlet          0.01;
+beginTime       0;
 
-dimensions      [0 2 -2 0 0 0 0];
+value           0;
 
-internalField   uniform $kInlet;
+name            "0";
 
-boundaryField
-{
-    freestream
-    {
-        type            inletOutlet;
-        inletValue      uniform $kInlet;
-        value           uniform $kInlet;
-    }
+index           0;
 
-    airfoil
-    {
-        type            kqRWallFunction;
-        value           uniform $kInlet;
-    }
-    
-    front 
-    {
-        type empty;
-    }
+deltaT          1;
 
-    back 
-    {
-        type empty;
-    }
-}
+deltaT0         1;
+
 
 // ************************************************************************* //
